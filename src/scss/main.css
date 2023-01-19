@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  width: 100%;
+  transition: all 0.3s ease;
+}
+nav img {
+  width: 10vw;
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  cursor: pointer;
+  padding-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+nav img:hover {
+  border-bottom: 5px dotted black;
+  transform: scale(1.1);
+}
+
+.CARD {
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  place-content: center;
+  transition: all 0.3s ease;
+}
+.CARD .innerCard {
+  height: 200px;
+  padding: 2rem;
+  cursor: pointer;
+  box-shadow: 1px 1px 20px grey;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.CARD .innerCard:hover {
+  box-shadow: 1px 1px 20px aqua;
+}
+
+.video {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=main.css.map */
