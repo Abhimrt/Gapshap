@@ -7,25 +7,26 @@ import { useCallback } from 'react';
 
 const Main = () => {
 
-    const [callId,setcallId] = useState('')
-    const [messageGoing,setmessageGoing] = useState('')
+    const [callId, setcallId] = useState('')
+    const [messageGoing, setmessageGoing] = useState('')
     const [id, setid] = useState()
-    const tempMsgData = []
-    const [msgReciveData, setmsgReciveData] = useState([])
-    const [msgSendData, setmsgSendData] = useState([])
+    const MsgData = useRef([])
+    const [msgData, setmsgData] = useState([])
     const peerInstance = useRef(null)
 
-    
-    
-   
+
+
+
+
+
     const saveMsg = useCallback(
         (data) => {
-            tempMsgData.push(data)
-            setmsgReciveData([...tempMsgData])
+            MsgData.current.push(data)
+            setmsgData([...MsgData.current])
         },
         [],
-      )
-    
+    )
+
 
     useEffect(() => {
         const peer = new Peer();
@@ -43,68 +44,69 @@ const Main = () => {
 
         peerInstance.current = peer
 
+
     }, [saveMsg])
     //connect 
-    const message = (remoteId,sendData) => {
+    const message = (remoteId, sendData) => {
         const conn = peerInstance.current.connect(remoteId);
         conn.on("open", () => {
             conn.send(sendData);
         });
         conn.on("data", (data) => {
-            console.log(data);
-            setmsgReciveData([...msgReciveData,data])
-            console.log(msgReciveData);
+            console.log(data, "--a");
         });
     }
 
-    const setMessage = ()=> {
-        if(callId !== "" && messageGoing !== ""){
-            setmsgSendData([...msgSendData, messageGoing])
-            message(callId,messageGoing)
+    const setMessage = () => {
+        if (callId !== "" && messageGoing !== "") {
+            MsgData.current.push(`${messageGoing}~SEnd~`)
+            setmsgData([...MsgData.current])
+            message(callId, messageGoing)
+            setmessageGoing("")
         }
     }
 
- 
+
+
 
 
     return (
-       <>
-             <div className='video'>
-            <h3>{id}</h3>
-            <br />
-            <input type="text" value={callId} placeholder="Calling ID" onChange={(e)=>setcallId(e.target.value)}/>
-            <input type="text" value={messageGoing} placeholder="Enter Message" onChange={(e)=>setmessageGoing(e.target.value)} />
-            <button onClick={setMessage} >connect</button>
-            
-           
-            
+        <>
 
-        </div>
-        <div className='video'>
-            <ul>
-                <h1>sending</h1>
-                {
-                    msgSendData.map((e,id)=>{
-                        return(
-                            <li key={id} >{e}</li>
-                        )
-                    })
-                }
+            <div className="message">
 
-            </ul>
-           <h1>--------</h1>
-        <ul>
-            <h1>reciving</h1>
-                {
-                    msgReciveData.map((e,id)=>{
-                        return(
-                            <li key={id} >{e}</li>
-                        )
-                    })
-                }
-            </ul>
-        </div>
-       </>
+                <div className='editor'>
+                    <div className='center'>
+                        <strong>{id}</strong>
+                        <button onClick={()=>navigator.clipboard.writeText(id)}>copy</button>
+                    </div>
+                    <br />
+                    <input type="text" value={callId} placeholder="Calling ID" onChange={(e) => setcallId(e.target.value)} />
+                    <input type="text" value={messageGoing} placeholder="Enter Message" onChange={(e) => setmessageGoing(e.target.value)} />
+                    <button onClick={setMessage} >connect</button>
+                </div>
+
+                <div className="inbox" >
+                    <ul >
+
+                        {
+                            msgData.map((e, id) => {
+                                if (e !== " ") {
+                                    if (e.length >= 4 && e.substr(e.length - 6) === "~SEnd~") {
+                                        return (<li key={id} className="send" >{e.substr(0, e.length - 6)}</li>)
+                                    } else {
+                                        return (<li key={id} className="recive" >{e}</li>)
+                                    }
+
+                                }
+                            })
+                        }
+                    </ul>
+                </div>
+            </div>
+
+
+        </>
     )
 }
 
