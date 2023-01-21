@@ -24,8 +24,6 @@ const Main = () => {
             var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
             getUserMedia({ audio: true }, (stream) => {
                 call.answer(stream)
-                videoGoing.current.srcObject = stream
-                videoGoing.current.play()
                 call.on('stream', (remoteStream) => {
                     videoComming.current.srcObject = remoteStream
                     videoComming.current.play()
@@ -38,8 +36,6 @@ const Main = () => {
     const call = (remoteId) => {
         var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
         getUserMedia({  audio: true }, (stream) => {
-            videoGoing.current.srcObject = stream
-            videoGoing.current.play()
             var call = peerInstance.current.call(remoteId, stream);
             call.on('stream', (remoteStream) => {
                 videoComming.current.srcObject = remoteStream

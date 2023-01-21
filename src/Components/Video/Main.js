@@ -26,6 +26,7 @@ const Main = () => {
                 call.answer(stream)
                 videoGoing.current.srcObject = stream
                 videoGoing.current.play()
+                videoGoing.current.muted = true
                 call.on('stream', (remoteStream) => {
                     videoComming.current.srcObject = remoteStream
                     videoComming.current.play()
@@ -40,6 +41,7 @@ const Main = () => {
         getUserMedia({ video: true, audio: true }, (stream) => {
             videoGoing.current.srcObject = stream
             videoGoing.current.play()
+            videoGoing.current.muted = true
             var call = peerInstance.current.call(remoteId, stream);
             call.on('stream', (remoteStream) => {
                 videoComming.current.srcObject = remoteStream
