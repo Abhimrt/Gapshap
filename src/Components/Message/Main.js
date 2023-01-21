@@ -7,64 +7,104 @@ import { useCallback } from 'react';
 
 const Main = () => {
 
-    const input = useRef(null)
-    const videoComming = useRef(null)
-    const messageGoing = useRef(null)
+    const [callId,setcallId] = useState('')
+    const [messageGoing,setmessageGoing] = useState('')
     const [id, setid] = useState()
-    const [msgData, setmsgData] = useState([])
+    const tempMsgData = []
+    const [msgReciveData, setmsgReciveData] = useState([])
+    const [msgSendData, setmsgSendData] = useState([])
     const peerInstance = useRef(null)
 
+    
+    
    
+    const saveMsg = useCallback(
+        (data) => {
+            tempMsgData.push(data)
+            setmsgReciveData([...tempMsgData])
+        },
+        [],
+      )
     
 
     useEffect(() => {
         const peer = new Peer();
         peer.on('open', (id) => {
             setid(id)
-            console.log('My peer ID is: ' + id);
         });
 
         //reciver
         peer.on("connection", (conn) => {
+            setcallId(conn.peer)
             conn.on("data", (data) => {
-                console.log(data);
-                setmsgData(msgData.push(data))
-                console.log(msgData);
-            });
-            conn.on("open", () => {
-                conn.send("hello!");
+                saveMsg(data);
             });
         });
 
         peerInstance.current = peer
 
-    }, [])
+    }, [saveMsg])
     //connect 
-    const message = (remoteId) => {
+    const message = (remoteId,sendData) => {
         const conn = peerInstance.current.connect(remoteId);
         conn.on("open", () => {
-            conn.send("hi hello!");
+            conn.send(sendData);
         });
         conn.on("data", (data) => {
             console.log(data);
-            setmsgData([...msgData,data])
-            console.log(msgData);
+            setmsgReciveData([...msgReciveData,data])
+            console.log(msgReciveData);
         });
+    }
+
+    const setMessage = ()=> {
+        if(callId !== "" && messageGoing !== ""){
+            setmsgSendData([...msgSendData, messageGoing])
+            message(callId,messageGoing)
+        }
     }
 
  
 
 
     return (
-        <div className='video'>
+       <>
+             <div className='video'>
             <h3>{id}</h3>
             <br />
-            <input type="text" ref={input} />
-            <button onClick={() => message(input.current.value)} >connect</button>
-            <input type="text" ref={messageGoing} />
+            <input type="text" value={callId} placeholder="Calling ID" onChange={(e)=>setcallId(e.target.value)}/>
+            <input type="text" value={messageGoing} placeholder="Enter Message" onChange={(e)=>setmessageGoing(e.target.value)} />
+            <button onClick={setMessage} >connect</button>
+            
+           
             
 
         </div>
+        <div className='video'>
+            <ul>
+                <h1>sending</h1>
+                {
+                    msgSendData.map((e,id)=>{
+                        return(
+                            <li key={id} >{e}</li>
+                        )
+                    })
+                }
+
+            </ul>
+           <h1>--------</h1>
+        <ul>
+            <h1>reciving</h1>
+                {
+                    msgReciveData.map((e,id)=>{
+                        return(
+                            <li key={id} >{e}</li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+       </>
     )
 }
 
