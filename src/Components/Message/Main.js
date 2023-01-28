@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useCallback } from 'react';
+import Alert from '../basic/Alert';
 
 const Main = () => {
 
@@ -12,6 +13,7 @@ const Main = () => {
     const [id, setid] = useState()
     const MsgData = useRef([])
     const [msgData, setmsgData] = useState([])
+    const [alert, setalert] = useState([false,""])
     const peerInstance = useRef(null)
 
 
@@ -29,7 +31,7 @@ const Main = () => {
 
 
     useEffect(() => {
-        const peer = new Peer();
+        const peer = new Peer(Math.random()*10000 | 0);
         peer.on('open', (id) => {
             setid(id)
         });
@@ -66,19 +68,27 @@ const Main = () => {
         }
     }
 
-
+    const copyText = ()=>{
+        navigator.clipboard.writeText(id)
+        setalert([true,"Text Copied!!"])
+    }
 
 
 
     return (
         <>
+        <Alert
+            show = {alert[0]}
+            setShow ={setalert}
+            text = {alert[1]}
+        />
 
             <div className="message">
 
                 <div className='editor'>
                     <div className='center'>
                         <strong>{id}</strong>
-                        <button onClick={()=>navigator.clipboard.writeText(id)}>copy</button>
+                        <button onClick={copyText}>copy</button>
                     </div>
                     <br />
                     <input type="text" value={callId} placeholder="Calling ID" onChange={(e) => setcallId(e.target.value)} />

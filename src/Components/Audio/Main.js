@@ -3,6 +3,7 @@ import { Peer } from "peerjs";
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Alert from '../basic/Alert';
 
 const Main = () => {
 
@@ -11,9 +12,10 @@ const Main = () => {
     const videoGoing = useRef(null)
     const [id, setid] = useState()
     const peerInstance = useRef(null)
+    const [alert, setalert] = useState([false,""])
 
     useEffect(() => {
-        const peer = new Peer();
+        const peer = new Peer(Math.random()*10000 | 0);
         peer.on('open', (id) => {
             setid(id)
             console.log('My peer ID is: ' + id);
@@ -46,17 +48,38 @@ const Main = () => {
         });
     }
 
+    const copyText = ()=>{
+        navigator.clipboard.writeText(id)
+        setalert([true,"Text Copied!!"])
+    }
+
+
 
 
     return (
-        <div className='video'>
-            <h3>{id}</h3>
-            <br />
+        
+       <>
+        <Alert
+            show = {alert[0]}
+            setShow ={setalert}
+            text = {alert[1]}
+        />
+             <div className='video '>
+                
+             <div className='center'>
+                        <strong>{id}</strong>
+                        <button onClick={copyText}>copy</button>
+            </div>
+            <div className="center">
             <input type="text" ref={input} />
             <button onClick={() => call(input.current.value)} >connect</button>
+            </div>
+            <div className="center">
             <audio ref={videoComming}></audio>
             <audio ref={videoGoing}></audio>
-        </div>
+            </div>
+        </div> 
+       </>
     )
 }
 
