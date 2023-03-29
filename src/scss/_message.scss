@@ -1,6 +1,6 @@
 .message {
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     @include centerCol;
 
     .editor{
@@ -17,7 +17,7 @@
     .inbox {
         // padding-top: 20rem;
         width: min(1200px, 100vw);
-        height: 80vh;
+        height: 68vh;
         @include center;
 
         // background-color: aqua;

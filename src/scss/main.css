@@ -83,7 +83,7 @@ nav img:hover {
 
 .message {
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,7 +99,7 @@ nav img:hover {
 }
 .message .inbox {
   width: min(1200px, 100vw);
-  height: 80vh;
+  height: 68vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,4 +166,16 @@ nav img:hover {
   font-weight: bold;
   color: lime;
   text-shadow: 1px 1px 5px black, -1px -1px 5px rgba(0, 0, 0, 0.427);
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 60px;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: wheat;
 }/*# sourceMappingURL=main.css.map */

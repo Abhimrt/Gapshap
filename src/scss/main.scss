@@ -92,3 +92,13 @@ nav{
         text-shadow: 1px 1px 5px black,-1px -1px 5px rgba(0, 0, 0, 0.427);
     }
 }
+// footer
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 60px;
+    font-size: 1.8rem;
+    @include center;
+    background-color: wheat;
+}
