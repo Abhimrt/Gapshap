@@ -1,11 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+  font-size: 1.3rem;
 }
 
 body {
   overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+  background: url("../images/whiteTexture.jpeg");
+}
+
+button {
+  cursor: pointer;
 }
 
 .center {
@@ -41,7 +53,7 @@ nav img:hover {
 
 .CARD {
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   padding: 2rem;
   display: grid;
   gap: 2rem;
@@ -55,6 +67,7 @@ nav img:hover {
   cursor: pointer;
   box-shadow: 1px 1px 20px grey;
   border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
   margin-bottom: 2rem;
   display: flex;
   justify-content: center;
@@ -62,12 +75,12 @@ nav img:hover {
   flex-direction: column;
 }
 .CARD .innerCard:hover {
-  box-shadow: 1px 1px 20px aqua;
+  box-shadow: 1px 1px 20px violet;
 }
 
 .video {
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +96,7 @@ nav img:hover {
 
 .message {
   width: 100vw;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,13 +109,17 @@ nav img:hover {
   padding: 5px 10px;
   margin: 1rem;
   border-radius: 20px;
+  outline: none;
 }
 .message .inbox {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.366);
+  padding: 1rem;
   width: min(1200px, 100vw);
-  height: 68vh;
+  height: 55vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 }
 .message .inbox ul {
   width: 100%;
@@ -129,18 +146,21 @@ nav img:hover {
   background: #555;
 }
 .message .inbox li {
-  width: 40%;
+  width: 55%;
   height: auto;
   padding: 5px 8px;
   background-color: rgb(228, 226, 226);
   margin-bottom: 0.5rem;
   list-style: none;
+  word-wrap: break-word;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.389);
 }
 .message .inbox .send {
   position: relative;
-  left: 60%;
+  left: 45%;
   bottom: 0;
   border-radius: 10px 0 10px 10px;
+  background-color: rgb(113, 233, 113);
 }
 .message .inbox .recive {
   border-radius: 0 10px 10px 10px;
@@ -151,7 +171,7 @@ nav img:hover {
 .alert {
   position: fixed;
   right: 0;
-  bottom: 40px;
+  bottom: 60px;
   width: 300px;
   height: auto;
   background-color: lime;
@@ -162,20 +182,37 @@ nav img:hover {
 .alert p {
   width: 100%;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   color: lime;
   text-shadow: 1px 1px 5px black, -1px -1px 5px rgba(0, 0, 0, 0.427);
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
   width: 100vw;
-  height: 60px;
-  font-size: 1.8rem;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: wheat;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 850px) {
+  * {
+    font-size: 1rem;
+  }
+  img {
+    width: 15vh !important;
+  }
+  .col {
+    flex-direction: column;
+  }
+  li {
+    width: 60% !important;
+  }
+  .send {
+    left: 40% !important;
+  }
 }/*# sourceMappingURL=main.css.map */

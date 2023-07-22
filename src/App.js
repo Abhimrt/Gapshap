@@ -1,15 +1,22 @@
 import Cards from "./Components/Cards";
 import "./scss/main.css";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import MainVid from "./Components/Video/Main";
 import MainVoi from "./Components/Audio/Main";
 import MainMsg from "./Components/Message/Main";
 
 function App() {
+
+  // window.confirm("fa")
+
+  window.onbeforeunload = function() {
+    return "Data will be lost if you leave the page, are you sure?";
+  };
+  const navigate = useNavigate();
   return (
-      <>
+      <div className="app">
       <nav>
-          <Link to={"/"}><img src={require("./images/black.png")} alt="" /></Link>
+          <div onClick={()=>window.confirm("Your data will be lost. Are you sure to exit this page.")?navigate("/"):null}><img src={require("./images/black.png")} alt="" /></div>
       </nav>
       <Routes>
         <Route path="/" element={<Cards/>} />
@@ -19,7 +26,7 @@ function App() {
       </Routes>
     <div className="footer">Developed by <a href="https://abhimrt.github.io/Portfolio/">Abhishek Singhal</a> </div>
         
-      </>
+      </div>
   );
 }
 

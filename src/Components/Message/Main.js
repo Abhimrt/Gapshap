@@ -73,7 +73,7 @@ const Main = () => {
         setalert([true,"Text Copied!!"])
     }
 
-
+   
 
     return (
         <>
@@ -85,16 +85,20 @@ const Main = () => {
 
             <div className="message">
 
-                <div className='editor'>
+                {/* editor start */}
+                <div className='editor '>
                     <div className='center'>
                         <strong>{id}</strong>
                         <button onClick={copyText}>copy</button>
                     </div>
                     <br />
-                    <input type="text" value={callId} placeholder="Calling ID" onChange={(e) => setcallId(e.target.value)} />
-                    <input type="text" value={messageGoing} placeholder="Enter Message" onChange={(e) => setmessageGoing(e.target.value)} />
-                    <button onClick={setMessage} >connect</button>
+                    <div className='center col'>
+                        <input type="text" value={callId} placeholder="Calling ID" onChange={(e) => setcallId(e.target.value)} />
+                        <input type="text" value={messageGoing} placeholder="Enter Message" onKeyDownCapture={(e)=>e.key=="Enter"?setMessage():null} onChange={(e) => setmessageGoing(e.target.value)} />
+                        <button onClick={setMessage} >Connect and Send</button>
+                    </div>
                 </div>
+                {/* editor end */}
 
                 <div className="inbox" >
                     <ul >
