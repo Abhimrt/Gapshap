@@ -43,7 +43,7 @@ const Main = () => {
             call.on('stream', (remoteStream) => {
                 videoComming.current.srcObject = remoteStream
                 videoComming.current.play()
-                setalert([true,"Connection built"]
+                setalert([true,"Connection built"])
             });
         }, (err) => {
             console.log('Failed to get local stream', err);
