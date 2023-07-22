@@ -25,6 +25,7 @@ const Main = () => {
         (data) => {
             MsgData.current.push(data)
             setmsgData([...MsgData.current])
+            scrollToBottom();
         },
         [],
     )
@@ -39,6 +40,7 @@ const Main = () => {
         //reciver
         peer.on("connection", (conn) => {
             setcallId(conn.peer)
+            setalert([true,"New Message!!"])
             conn.on("data", (data) => {
                 saveMsg(data);
             });
@@ -65,6 +67,7 @@ const Main = () => {
             setmsgData([...MsgData.current])
             message(callId, messageGoing)
             setmessageGoing("")
+            scrollToBottom();
         }
     }
 
@@ -73,6 +76,12 @@ const Main = () => {
         setalert([true,"Text Copied!!"])
     }
 
+    const scrollToBottom = () => {
+        const element = document.getElementById("messages");
+        // element.scrollTop = element.scrollHeight+500;
+        element.scroll({ top: element.scrollHeight*2, behavior: 'smooth' })
+        console.log(element.scrollHeight)
+    }
    
 
     return (
@@ -101,7 +110,7 @@ const Main = () => {
                 {/* editor end */}
 
                 <div className="inbox" >
-                    <ul >
+                    <ul id='messages' >
 
                         {
                             msgData.map((e, id) => {

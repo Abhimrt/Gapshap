@@ -30,6 +30,7 @@ const Main = () => {
                     videoComming.current.srcObject = remoteStream
                     videoComming.current.play()
                 });
+                setalert([true,"Connection built"]
             });
         })
         peerInstance.current = peer
@@ -42,6 +43,7 @@ const Main = () => {
             call.on('stream', (remoteStream) => {
                 videoComming.current.srcObject = remoteStream
                 videoComming.current.play()
+                setalert([true,"Connection built"]
             });
         }, (err) => {
             console.log('Failed to get local stream', err);
@@ -71,7 +73,7 @@ const Main = () => {
                         <button onClick={copyText}>copy</button>
             </div>
             <div className="center">
-            <input type="text" ref={input} />
+            <input type="text" ref={input} placeholder='Enter Senders Id' />
             <button onClick={() => call(input.current.value)} >connect</button>
             </div>
             <div className="center">

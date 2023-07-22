@@ -33,6 +33,7 @@ const Main = () => {
                     videoComming.current.srcObject = remoteStream
                     videoComming.current.play()
                 });
+                setalert([true,"Connection built"])
             });
         })
         peerInstance.current = peer
@@ -49,6 +50,7 @@ const Main = () => {
                 videoComming.current.srcObject = remoteStream
                 videoComming.current.play()
             });
+            setalert([true,"Connection built"])
         }, (err) => {
             console.log('Failed to get local stream', err);
         });
