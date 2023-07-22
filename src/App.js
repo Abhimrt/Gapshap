@@ -24,7 +24,7 @@ function App() {
         <Route path="/message" element={<MainMsg/>} />
         <Route path="/voice" element={<MainVoi/>} />
       </Routes>
-    <div className="footer">Developed by <a href="https://abhimrt.github.io/Portfolio/">Abhishek Singhal</a> </div>
+    
         
       </div>
   );

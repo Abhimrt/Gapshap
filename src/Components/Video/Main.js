@@ -12,10 +12,10 @@ const Main = () => {
     const videoGoing = useRef(null)
     const [id, setid] = useState()
     const peerInstance = useRef(null)
-    const [alert, setalert] = useState([false,""])
+    const [alert, setalert] = useState([false, ""])
 
     useEffect(() => {
-        const peer = new Peer(Math.random()*10000 | 0);
+        const peer = new Peer(Math.random() * 10000 | 0);
         peer.on('open', (id) => {
             setid(id)
             console.log('My peer ID is: ' + id);
@@ -54,34 +54,36 @@ const Main = () => {
         });
     }
 
-    const copyText = ()=>{
+    const copyText = () => {
         navigator.clipboard.writeText(id)
-        setalert([true,"Text Copied!!"])
+        setalert([true, "Text Copied!!"])
     }
 
     return (
         <>
-        <Alert
-            show = {alert[0]}
-            setShow ={setalert}
-            text = {alert[1]}
-        />
-             <div className='video '>
+            <Alert
+                show={alert[0]}
+                setShow={setalert}
+                text={alert[1]}
+            />
+            <div className='video '>
                 
-             <div className='center'>
-                        <strong>{id}</strong>
+                <div className="center VidLeft">
+                    <video ref={videoComming} className='VidComing' ></video>
+                </div>
+                <div className="VidRight centerCol">
+                    <div className='center'>
+                        <div className='center'>Id = &nbsp; <strong>{id}</strong></div>
                         <button onClick={copyText}>copy</button>
+                    </div>
+                    <div className="center">
+                        <input type="text" ref={input} placeholder="Enter Sender's ID"/>
+                        <button onClick={() => call(input.current.value)} >connect</button>
+                    </div>
+                    <video ref={videoGoing}   className='VidGoing'></video>
+                </div>
             </div>
-            <div className="center">
-            <input type="text" ref={input} />
-            <button onClick={() => call(input.current.value)} >connect</button>
-            </div>
-            <div className="center">
-            <video ref={videoComming} ></video>
-            <video ref={videoGoing} style={{width:"10rem"}}></video>
-            </div>
-        </div> 
-       </>
+        </>
     )
 }
 

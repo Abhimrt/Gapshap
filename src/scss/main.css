@@ -20,6 +20,13 @@ button {
   cursor: pointer;
 }
 
+input, button {
+  padding: 5px 10px;
+  margin: 1rem;
+  border-radius: 20px;
+  outline: none;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -40,6 +47,8 @@ nav {
   align-items: center;
   padding: 1rem;
   transition: all 0.3s ease;
+  height: 10vh;
+  overflow: hidden;
 }
 nav img {
   width: 10vw;
@@ -84,16 +93,41 @@ nav img:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-}
-.video div {
-  margin-bottom: 1rem;
 }
 .video video {
-  width: 50%;
-  margin: 1rem;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+}
+.video .VidLeft {
+  padding: 1rem;
+  width: 60%;
+}
+.video .VidLeft .VidComing {
+  background: #332d2d;
+  width: 100%;
+}
+.video .VidRight {
+  padding: 1rem;
+  width: 40%;
+}
+.video .VidRight .VidGoing {
+  width: 100%;
+  background: #332d2d;
 }
 
+@media only screen and (max-width: 850px) {
+  .video {
+    flex-direction: column;
+    justify-content: start !important;
+  }
+  .video div {
+    width: 100% !important;
+  }
+  .video .VidGoing {
+    width: 70% !important;
+    margin-top: 1rem;
+  }
+}
 .message {
   width: 100vw;
   height: 90vh;
@@ -104,12 +138,6 @@ nav img:hover {
 }
 .message .editor {
   padding-bottom: 1rem;
-}
-.message .editor input, .message .editor button {
-  padding: 5px 10px;
-  margin: 1rem;
-  border-radius: 20px;
-  outline: none;
 }
 .message .inbox {
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.366);

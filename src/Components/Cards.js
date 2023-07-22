@@ -29,7 +29,7 @@ const Cards = () => {
                 }
 
             </div>
-
+            <div className="footer">Developed by <a href="https://abhimrt.github.io/Portfolio/">Abhishek Singhal</a> </div>
         </>
     )
 }
