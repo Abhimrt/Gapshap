@@ -30,7 +30,7 @@ const Main = () => {
                     videoComming.current.srcObject = remoteStream
                     videoComming.current.play()
                 });
-                setalert([true,"Connection built"]
+                setalert([true,"Connection built"])
             });
         })
         peerInstance.current = peer
