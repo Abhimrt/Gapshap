@@ -26,8 +26,14 @@ const Cards = () => {
                             </motion.div>
                         )
                     })
-                }
 
+                }
+                <motion.div
+                                onClick={()=>window.location.href = "https://github.com/Abhimrt/Gapshap"}
+                                className="innerCard"
+                            >
+                                <h1>Documentation</h1>
+                </motion.div>
             </div>
             <div className="footer">Developed by <a href="https://abhimrt.github.io/Portfolio/">Abhishek Singhal</a> </div>
         </>

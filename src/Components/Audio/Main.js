@@ -32,6 +32,7 @@ const Main = () => {
           navigator.mozGetUserMedia;
         getUserMedia({ audio: true }, (stream) => {
           call.answer(stream);
+          input.current.value = call.peer;
           call.on("stream", (remoteStream) => {
             videoComming.current.srcObject = remoteStream;
             videoComming.current.play();

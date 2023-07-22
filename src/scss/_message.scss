@@ -51,6 +51,15 @@
 
         }
 
+        div{
+            display: flex;
+            align-items: center;
+            span{
+                margin-left: .3rem;
+                cursor: pointer;
+            }
+        }
+
         li {
             width: 55%;
             height: auto;
