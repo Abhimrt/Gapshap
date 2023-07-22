@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Gapshap/static/css/main.b71fb8f2.css",
-    "main.js": "/Gapshap/static/js/main.af2ad300.js",
+    "main.js": "/Gapshap/static/js/main.d42f965e.js",
     "static/media/whiteTexture.jpeg": "/Gapshap/static/media/whiteTexture.8828d5ce31cc3a3bb80e.jpeg",
     "static/media/black.png": "/Gapshap/static/media/black.25eba91c18c5383902cb.png",
     "index.html": "/Gapshap/index.html",
     "main.b71fb8f2.css.map": "/Gapshap/static/css/main.b71fb8f2.css.map",
-    "main.af2ad300.js.map": "/Gapshap/static/js/main.af2ad300.js.map"
+    "main.d42f965e.js.map": "/Gapshap/static/js/main.d42f965e.js.map"
   },
   "entrypoints": [
     "static/css/main.b71fb8f2.css",
-    "static/js/main.af2ad300.js"
+    "static/js/main.d42f965e.js"
   ]
 }
