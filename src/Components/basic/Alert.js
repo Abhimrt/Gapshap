@@ -5,7 +5,7 @@ const Alert = (props) => {
     if(props.show){
         setTimeout(()=>{
             props.setShow([false,""])
-        },3000)
+        },5000)
     }
     
     return (
