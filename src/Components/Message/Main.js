@@ -94,7 +94,7 @@ const Main = () => {
         <div className="editor ">
           <div className="center">
             <strong>{id}</strong>
-            <button onClick={()=>copyText(id)}>copy</button>
+            <button onClick={() => copyText(id)}>copy</button>
           </div>
           <br />
           <div className="center col">
@@ -109,7 +109,7 @@ const Main = () => {
               type="text"
               value={messageGoing}
               placeholder="Enter Message"
-              onKeyDownCapture={(e) => (e.key == "Enter" ? setMessage() : null)}
+              onKeyDownCapture={(e) => (e.key === "Enter" ? setMessage() : null)}
               onChange={(e) => setmessageGoing(e.target.value)}
             />
             <button onClick={setMessage}>Connect and Send</button>
@@ -133,10 +133,12 @@ const Main = () => {
                       <li key={id} className="recive">
                         {e}
                       </li>
-                      <span  onClick={()=>copyText(e)}>🔗</span>
+                      <span onClick={() => copyText(e)}>🔗</span>
                     </div>
                   );
                 }
+              } else {
+                return <></>
               }
             })}
           </ul>
